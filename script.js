@@ -25,6 +25,13 @@ function textCheck(text){
   }
 }
 
+function textEnterTrue(text){
+  if(text == true){
+    return false;
+  } else {
+    return true
+  }
+}
 
 function prompts(){
   let lengthOfPassword
@@ -54,9 +61,7 @@ function prompts(){
     while(lowercaseNotEntered){
       lowercase = prompt("Lowercase?");
       var textEntered = textCheck(lowercase);
-      if(textEntered == true){
-        lowercaseNotEntered = false;
-      }
+      lowercaseNotEntered = textEnterTrue(textEntered);
     }
 
     var uppercaseNotEntered = true;
@@ -110,6 +115,7 @@ function prompts(){
     
   }
 }
+
 
 
 // Add event listener to generate button
