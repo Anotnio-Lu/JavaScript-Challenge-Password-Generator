@@ -11,7 +11,7 @@ function writePassword() {
 }
 
 function generatePassword(){
-  var word = "k"
+  var word = "WORD"
   return word;
 }
 
@@ -60,29 +60,25 @@ function prompts(){
     var lowercaseNotEntered = true;
     while(lowercaseNotEntered){
       lowercase = prompt("Lowercase?");
-      var textEntered = textCheck(lowercase);
-      lowercaseNotEntered = textEnterTrue(textEntered);
+      lowercaseNotEntered = textEnterTrue(textCheck(lowercase));
     }
 
     var uppercaseNotEntered = true;
     while(uppercaseNotEntered){
       uppercase = prompt("Uppercase?");
-      var textEntered = textCheck(uppercase);
-      uppercaseNotEntered = textEnterTrue(textEntered);
+      uppercaseNotEntered = textEnterTrue(textCheck(uppercase));
     }
 
     var numericNotEntered = true;
     while(numericNotEntered){
       numeric = prompt("Numeric?");
-      var textEntered = textCheck(numeric);
-      numericNotEntered = textEnterTrue(textEntered);
+      numericNotEntered = textEnterTrue(textCheck(numeric));
     }
 
     var specialCharactersNotEntered = true;
     while(specialCharactersNotEntered){
       specialCharacters = prompt("Special characters?");
-      var textEntered = textCheck(specialCharacters);
-      specialCharactersNotEntered = textEnterTrue(textEntered);
+      specialCharactersNotEntered = textEnterTrue(textCheck(specialCharacters));
     }
     
     var CorrectCharTypesNotEntered = true;
@@ -102,7 +98,6 @@ function prompts(){
       } else {
         CorrectCharTypesNotEntered = false;
       }
-
     } 
     
   }
