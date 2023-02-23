@@ -15,8 +15,19 @@ function generatePassword(){
   return word;
 }
 
+function textCheck(text){
+  if (!isNaN(text)) {
+    alert("You entered digits. please enter Y or N");
+  } else if (text.toLowerCase() === "y" || text.toLowerCase() === "n") {    
+    return true;
+  } else {    
+    alert ("You entered letters or words but did not enter Y or N. please enter Y or N");
+  }
+}
+
+
 function prompts(){
-  var numberNotEntered = true
+  var numberNotEntered = true;
   while(numberNotEntered){
     let lengthOfPassword = Number(window.prompt("Choose what length you wish your password to be, at least 8 characters and no more than 128 characters", ));
     console.log(lengthOfPassword);
@@ -28,11 +39,28 @@ function prompts(){
       numberNotEntered = false;
     }
   }
-  
 
-  // let characterTypes = prompt("confirm whether or not to include lowercase, uppercase, numeric, and/or special characters");
+  var characterTypeNotEntered = true;
+  while(characterTypeNotEntered){
+    alert("Confirm whether or not to include lowercase, uppercase, numeric, and/or special characters. Respond with Y for yes or N for no");
+    
+    var lowercaseNotEntered = true;
+    while(lowercaseNotEntered){
+      let lowercase = prompt("Lowercase?");
+      var textEntered = textCheck(lowercase);
+      console.log(textEntered);
+      if(textEntered == true){
+        lowercaseNotEntered = false;
+      }
+    }
+    
+    let uppercase = prompt("Uppercase?");
+    let numeric = prompt("Numeric?");
+    let specialCharacters = prompt("Special characters?");
   
+  }
 }
+
 
 
 // Add event listener to generate button
