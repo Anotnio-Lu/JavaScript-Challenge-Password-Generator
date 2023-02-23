@@ -68,27 +68,21 @@ function prompts(){
     while(uppercaseNotEntered){
       uppercase = prompt("Uppercase?");
       var textEntered = textCheck(uppercase);
-      if(textEntered == true){
-        uppercaseNotEntered = false;
-      }
+      uppercaseNotEntered = textEnterTrue(textEntered);
     }
 
     var numericNotEntered = true;
     while(numericNotEntered){
       numeric = prompt("Numeric?");
       var textEntered = textCheck(numeric);
-      if(textEntered == true){
-        numericNotEntered = false;
-      }
+      numericNotEntered = textEnterTrue(textEntered);
     }
 
     var specialCharactersNotEntered = true;
     while(specialCharactersNotEntered){
       specialCharacters = prompt("Special characters?");
       var textEntered = textCheck(specialCharacters);
-      if(textEntered == true){
-        specialCharactersNotEntered = false;
-      }
+      specialCharactersNotEntered = textEnterTrue(textEntered);
     }
     
     var CorrectCharTypesNotEntered = true;
@@ -102,8 +96,6 @@ function prompts(){
       );
     
       var textEntered = textCheck(CorrectCharTypes);
-      console.log(textEntered);
-      console.log(CorrectCharTypes);
       if(textEntered == true && CorrectCharTypes === "y"){
         characterTypeNotEntered = false;
         CorrectCharTypesNotEntered = false;
@@ -115,8 +107,6 @@ function prompts(){
     
   }
 }
-
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", prompts);
