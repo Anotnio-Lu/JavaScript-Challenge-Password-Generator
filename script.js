@@ -27,9 +27,15 @@ function textCheck(text){
 
 
 function prompts(){
+  let lengthOfPassword
+  let lowercase
+  let uppercase
+  let numeric
+  let specialCharacters
+
   var numberNotEntered = true;
   while(numberNotEntered){
-    let lengthOfPassword = Number(window.prompt("Choose what length you wish your password to be, at least 8 characters and no more than 128 characters", ));
+    lengthOfPassword = Number(window.prompt("Choose what length you wish your password to be, at least 8 characters and no more than 128 characters", ));
     console.log(lengthOfPassword);
     if (isNaN(lengthOfPassword)) {
       alert("You did not enter digits");
@@ -46,18 +52,40 @@ function prompts(){
     
     var lowercaseNotEntered = true;
     while(lowercaseNotEntered){
-      let lowercase = prompt("Lowercase?");
+      lowercase = prompt("Lowercase?");
       var textEntered = textCheck(lowercase);
-      console.log(textEntered);
       if(textEntered == true){
         lowercaseNotEntered = false;
       }
     }
-    
-    let uppercase = prompt("Uppercase?");
-    let numeric = prompt("Numeric?");
-    let specialCharacters = prompt("Special characters?");
-  
+
+    var uppercaseNotEntered = true;
+    while(uppercaseNotEntered){
+      uppercase = prompt("Uppercase?");
+      var textEntered = textCheck(uppercase);
+      if(textEntered == true){
+        uppercaseNotEntered = false;
+      }
+    }
+
+    var numericNotEntered = true;
+    while(numericNotEntered){
+      numeric = prompt("Numeric?");
+      var textEntered = textCheck(numeric);
+      if(textEntered == true){
+        numericNotEntered = false;
+      }
+    }
+
+    var specialCharactersNotEntered = true;
+    while(specialCharactersNotEntered){
+      specialCharacters = prompt("Special characters?");
+      var textEntered = textCheck(specialCharacters);
+      if(textEntered == true){
+        specialCharactersNotEntered = false;
+      }
+    }
+      
   }
 }
 
