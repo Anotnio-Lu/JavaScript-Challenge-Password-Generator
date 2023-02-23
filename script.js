@@ -21,7 +21,7 @@ function textCheck(text){
   } else if (text.toLowerCase() === "y" || text.toLowerCase() === "n") {    
     return true;
   } else {    
-    alert ("You entered letters or words but did not enter Y or N. please enter Y or N");
+    alert ("You entered characters that was not Y or N. please enter Y or N");
   }
 }
 
@@ -85,10 +85,31 @@ function prompts(){
         specialCharactersNotEntered = false;
       }
     }
-      
+    
+    var CorrectCharTypesNotEntered = true;
+    while(CorrectCharTypesNotEntered){
+      let CorrectCharTypes = prompt(
+        "Are these the correct parameters: " + 
+        "Lowercase: " + lowercase + ', ' + 
+        "Uppercase: " + uppercase + ', ' + 
+        "Numeric: " + numeric + ', ' + 
+        "SpecialCharacters: " + specialCharacters + "? (please respond with Y or N)"
+      );
+    
+      var textEntered = textCheck(CorrectCharTypes);
+      console.log(textEntered);
+      console.log(CorrectCharTypes);
+      if(textEntered == true && CorrectCharTypes === "y"){
+        characterTypeNotEntered = false;
+        CorrectCharTypesNotEntered = false;
+      } else {
+        CorrectCharTypesNotEntered = false;
+      }
+
+    } 
+    
   }
 }
-
 
 
 // Add event listener to generate button
