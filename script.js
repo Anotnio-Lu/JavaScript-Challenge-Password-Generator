@@ -10,9 +10,9 @@ function writePassword() {
   passwordText.value = password;
 }
 
-function generatePassword(){
-  var word = "k"
-  return word;
+function generatePassword(Length, Lowercase, Uppercase, numeric, specialCharacters){
+  // var numberLength = Length *
+
 }
 
 function textCheck(text){
@@ -32,6 +32,20 @@ function textEnterTrue(text){
     return true
   }
 }
+
+function enteredtype(type){
+  var notEntered = true;
+  var returnval
+
+  while(notEntered){
+    returnval = prompt(type + "?");
+    notEntered = textEnterTrue(textCheck(returnval));
+    if(!notEntered){
+      return returnval
+    }
+  }
+}
+
 
 function prompts(){
   let lengthOfPassword
@@ -56,30 +70,13 @@ function prompts(){
   while(characterTypeNotEntered){
     alert("Confirm whether or not to include lowercase, uppercase, numeric, and/or special characters. Respond with Y for yes or N for no");
     
-    var lowercaseNotEntered = true;
-    while(lowercaseNotEntered){
-      lowercase = prompt("Lowercase?");
-      lowercaseNotEntered = textEnterTrue(textCheck(lowercase));
-    }
+    lowercase = enteredtype('Lowercase');
 
-    var uppercaseNotEntered = true;
-    while(uppercaseNotEntered){
-      uppercase = prompt("Uppercase?");
-      uppercaseNotEntered = textEnterTrue(textCheck(uppercase));
-    }
+    uppercase = enteredtype('Uppercase');
 
-    var numericNotEntered = true;
-    while(numericNotEntered){
-      numeric = prompt("Numeric?");
-      numericNotEntered = textEnterTrue(textCheck(numeric));
-    }
+    numeric = enteredtype('Numeric');
 
-    var specialCharactersNotEntered = true;
-    while(specialCharactersNotEntered){
-      specialCharacters = prompt("Special characters?");
-      specialCharactersNotEntered = textEnterTrue(textCheck(specialCharacters));
-    }
-
+    specialCharacters = enteredtype('Special Characters');
 
     if (lowercase == 'n' && uppercase == 'n' && numeric == 'n' && specialCharacters == 'n'){
       alert("You did not select a character type, at least one character type should be selected");
@@ -105,7 +102,6 @@ function prompts(){
       }
     }
   }
-
 }
 
 // Add event listener to generate button
