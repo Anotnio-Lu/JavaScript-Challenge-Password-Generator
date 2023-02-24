@@ -39,13 +39,15 @@ function enteredtype(type){
 
   while(notEntered){
     returnval = prompt(type + "?");
+    if (!returnval) {
+      break
+    }
     notEntered = textEnterTrue(textCheck(returnval));
     if(!notEntered){
       return returnval
     }
   }
 }
-
 
 function prompts(){
   let lengthOfPassword
@@ -57,7 +59,9 @@ function prompts(){
   var numberNotEntered = true;
   while(numberNotEntered){
     lengthOfPassword = Number(window.prompt("Choose what length you wish your password to be, at least 8 characters and no more than 128 characters"));
-    if (isNaN(lengthOfPassword)) {
+    if(lengthOfPassword == 0){
+      return
+    } else if (isNaN(lengthOfPassword)) {
       alert("You did not enter a number");
     } else if (lengthOfPassword > 128 || lengthOfPassword < 8) {    
         alert ("The length has to be at least 8 characters and no more than 128 characters.");
@@ -71,14 +75,26 @@ function prompts(){
     alert("Confirm whether or not to include lowercase, uppercase, numeric, and/or special characters. Respond with Y for yes or N for no");
     
     lowercase = enteredtype('Lowercase');
+    if(lowercase == undefined){
+      return
+    }
 
     uppercase = enteredtype('Uppercase');
+    if(uppercase == undefined){
+      return
+    }
 
     numeric = enteredtype('Numeric');
+    if(uppercase == undefined){
+      return
+    }
 
     specialCharacters = enteredtype('Special Characters');
+    if(uppercase == undefined){
+      return
+    }
 
-    if (lowercase == 'n' && uppercase == 'n' && numeric == 'n' && specialCharacters == 'n'){
+    if (lowercase.toUpperCase() == 'N' && uppercase.toUpperCase() == 'N' && numeric.toUpperCase() == 'N' && specialCharacters.toUpperCase() == 'N'){
       alert("You did not select a character type, at least one character type should be selected");
       continue;
     } else{
@@ -93,7 +109,7 @@ function prompts(){
         );
 
         var textEntered = textCheck(CorrectCharTypes);
-        if(textEntered == true && CorrectCharTypes === "y"){
+        if(textEntered == true && CorrectCharTypes.toUpperCase() === "Y"){
           characterTypeNotEntered = false;
           CorrectCharTypesNotEntered = false;
         } else {
@@ -102,6 +118,7 @@ function prompts(){
       }
     }
   }
+
 }
 
 // Add event listener to generate button
