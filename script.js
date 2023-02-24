@@ -11,7 +11,7 @@ function writePassword() {
 }
 
 function generatePassword(){
-  var word = "WORD"
+  var word = "k"
   return word;
 }
 
@@ -42,10 +42,9 @@ function prompts(){
 
   var numberNotEntered = true;
   while(numberNotEntered){
-    lengthOfPassword = Number(window.prompt("Choose what length you wish your password to be, at least 8 characters and no more than 128 characters", ));
-    console.log(lengthOfPassword);
+    lengthOfPassword = Number(window.prompt("Choose what length you wish your password to be, at least 8 characters and no more than 128 characters"));
     if (isNaN(lengthOfPassword)) {
-      alert("You did not enter digits");
+      alert("You did not enter a number");
     } else if (lengthOfPassword > 128 || lengthOfPassword < 8) {    
         alert ("The length has to be at least 8 characters and no more than 128 characters.");
     } else {
@@ -80,29 +79,34 @@ function prompts(){
       specialCharacters = prompt("Special characters?");
       specialCharactersNotEntered = textEnterTrue(textCheck(specialCharacters));
     }
-    
-    var CorrectCharTypesNotEntered = true;
-    while(CorrectCharTypesNotEntered){
-      let CorrectCharTypes = prompt(
+
+
+    if (lowercase == 'n' && uppercase == 'n' && numeric == 'n' && specialCharacters == 'n'){
+      alert("You did not select a character type, at least one character type should be selected");
+      continue;
+    } else{
+      var CorrectCharTypesNotEntered = true;
+      while(CorrectCharTypesNotEntered){
+        let CorrectCharTypes = prompt(
         "Are these the correct parameters: " + 
         "Lowercase: " + lowercase + ', ' + 
         "Uppercase: " + uppercase + ', ' + 
         "Numeric: " + numeric + ', ' + 
         "SpecialCharacters: " + specialCharacters + "? (please respond with Y or N)"
-      );
-    
-      var textEntered = textCheck(CorrectCharTypes);
-      if(textEntered == true && CorrectCharTypes === "y"){
-        characterTypeNotEntered = false;
+        );
+
+        var textEntered = textCheck(CorrectCharTypes);
+        if(textEntered == true && CorrectCharTypes === "y"){
+          characterTypeNotEntered = false;
+          CorrectCharTypesNotEntered = false;
+        } else {
         CorrectCharTypesNotEntered = false;
-      } else {
-        CorrectCharTypesNotEntered = false;
+        }
       }
-    } 
-    
+    }
   }
+
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", prompts);
-
