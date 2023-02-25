@@ -2,4 +2,4 @@
 
 ## Reference
 
-https://attacomsian.com/blog/javascript-generate-random-string
+https://attacomsian.com/blog/javascript-generate-random-string#generate-large-random-strings

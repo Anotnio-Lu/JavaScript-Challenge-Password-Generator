@@ -2,7 +2,6 @@
 var generateBtn = document.querySelector("#generate");
 var arrayToConcat = [];
 
-
 // Write password to the #password input
 function writePassword(Length, array) {
   var password = generatePassword(Length, array);
@@ -39,10 +38,15 @@ function generatePassword(length, array){
   for(var i = 0; i < arrayToConcat.length; i++){
     selectedChar = selectedChar.concat(Object.values(obj)[arrayToConcat[i]]);
   }
+  // The below is code that i have used from a source, please see README for source link
+  let Password = '';
+  for (let i = 0; i < length; i++) {
+      Password += selectedChar.charAt(Math.floor(Math.random() * selectedChar.length));
+  }
+  arrayToConcat = [];
+  return Password;
   
 }
-
-
 
 function textCheck(text){
   if (!isNaN(text)) {
@@ -78,7 +82,6 @@ function enteredtype(type){
   }
 }
 
-
 function prompts(){
   let lengthOfPassword
   let lowercase
@@ -107,13 +110,13 @@ function prompts(){
   while(characterTypeNotEntered){
     alert("Confirm whether or not to include Lowercase letters, Uppercase letters, Numbers, and/or Special Characters. Respond with Y for yes or N for no");
     
-    lowercase = enteredtype('Lowercase');
+    lowercase = enteredtype('Lowercase letters');
     if(lowercase == undefined){
       return
     }
     lowercase = lowercase.toUpperCase();
 
-    uppercase = enteredtype('Uppercase');
+    uppercase = enteredtype('Uppercase Letters');
     if(uppercase == undefined){
       return
     }
@@ -157,7 +160,6 @@ function prompts(){
   }
 
   charTypeArray = [lowercase, uppercase, numeric, specialCharacters];
-
   writePassword(lengthOfPassword, charTypeArray)
 }
 
