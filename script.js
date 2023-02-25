@@ -13,6 +13,21 @@ function writePassword(Length, array) {
 
 function generatePassword(length, array){
 
+  if(!array.includes('n')){
+    arrayToConcat = [0, 1, 2, 3];
+  } else{
+    for(var i = 0; i < array.length; i++){
+      let index = array.indexOf("y");
+      arrayToConcat.push(index);
+      array.splice(index, 1, "n")
+      if(array.includes('y')){
+        continue
+      } else{
+        break
+      }
+    }
+  }
+  
 }
 
 
