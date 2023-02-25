@@ -1,19 +1,21 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+var arrayToConcat = [];
 
 
 // Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
+function writePassword(Length, array) {
+  var password = generatePassword(Length, array);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 }
 
-function generatePassword(Length, Lowercase, Uppercase, numeric, specialCharacters){
-  // var numberLength = Length *
+function generatePassword(length, array){
 
 }
+
+
 
 function textCheck(text){
   if (!isNaN(text)) {
@@ -34,8 +36,8 @@ function textEnterTrue(text){
 }
 
 function enteredtype(type){
-  var notEntered = true;
-  var returnval
+  let notEntered = true;
+  let returnval
 
   while(notEntered){
     returnval = prompt(type + "?");
@@ -49,6 +51,7 @@ function enteredtype(type){
   }
 }
 
+
 function prompts(){
   let lengthOfPassword
   let lowercase
@@ -56,7 +59,10 @@ function prompts(){
   let numeric
   let specialCharacters
 
-  var numberNotEntered = true;
+  let charTypeArray = []
+
+
+  let numberNotEntered = true;
   while(numberNotEntered){
     lengthOfPassword = Number(window.prompt("Choose what length you wish your password to be, at least 8 characters and no more than 128 characters"));
     if(lengthOfPassword == 0){
@@ -70,45 +76,49 @@ function prompts(){
     }
   }
 
-  var characterTypeNotEntered = true;
+  let characterTypeNotEntered = true;
   while(characterTypeNotEntered){
-    alert("Confirm whether or not to include lowercase, uppercase, numeric, and/or special characters. Respond with Y for yes or N for no");
+    alert("Confirm whether or not to include Lowercase letters, Uppercase letters, Numbers, and/or Special Characters. Respond with Y for yes or N for no");
     
     lowercase = enteredtype('Lowercase');
     if(lowercase == undefined){
       return
     }
+    lowercase = lowercase.toUpperCase();
 
     uppercase = enteredtype('Uppercase');
     if(uppercase == undefined){
       return
     }
+    uppercase = uppercase.toUpperCase();
 
     numeric = enteredtype('Numeric');
-    if(uppercase == undefined){
+    if(numeric == undefined){
       return
     }
+    numeric = numeric.toUpperCase();
 
     specialCharacters = enteredtype('Special Characters');
-    if(uppercase == undefined){
+    if(specialCharacters == undefined){
       return
     }
+    specialCharacters = specialCharacters.toUpperCase();
 
-    if (lowercase.toUpperCase() == 'N' && uppercase.toUpperCase() == 'N' && numeric.toUpperCase() == 'N' && specialCharacters.toUpperCase() == 'N'){
+    if (lowercase == 'N' && uppercase == 'N' && numeric == 'N' && specialCharacters == 'N'){
       alert("You did not select a character type, at least one character type should be selected");
       continue;
     } else{
-      var CorrectCharTypesNotEntered = true;
+      let CorrectCharTypesNotEntered = true;
       while(CorrectCharTypesNotEntered){
         let CorrectCharTypes = prompt(
         "Are these the correct parameters: " + 
-        "Lowercase: " + lowercase + ', ' + 
-        "Uppercase: " + uppercase + ', ' + 
-        "Numeric: " + numeric + ', ' + 
-        "SpecialCharacters: " + specialCharacters + "? (please respond with Y or N)"
+        "Lowercase Letters: " + lowercase + ', ' + 
+        "Uppercase Letters: " + uppercase + ', ' + 
+        "Numbers: " + numeric + ', ' + 
+        "SpecialCharacters: " + specialCharacters + "? (Please respond with Y or N)"
         );
 
-        var textEntered = textCheck(CorrectCharTypes);
+        let textEntered = textCheck(CorrectCharTypes);
         if(textEntered == true && CorrectCharTypes.toUpperCase() === "Y"){
           characterTypeNotEntered = false;
           CorrectCharTypesNotEntered = false;
@@ -119,6 +129,9 @@ function prompts(){
     }
   }
 
+  charTypeArray = [lowercase, uppercase, numeric, specialCharacters];
+
+  writePassword(lengthOfPassword, charTypeArray)
 }
 
 // Add event listener to generate button
