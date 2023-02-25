@@ -2,6 +2,7 @@
 var generateBtn = document.querySelector("#generate");
 var arrayToConcat = [];
 
+
 // Write password to the #password input
 function writePassword(Length, array) {
   var password = generatePassword(Length, array);
@@ -38,23 +39,25 @@ function generatePassword(length, array){
   for(var i = 0; i < arrayToConcat.length; i++){
     selectedChar = selectedChar.concat(Object.values(obj)[arrayToConcat[i]]);
   }
-  // The below is code that i have used from a source, please see README for source link
+
+  // The below is code that i have used from a source(Reference 1.1), please see README for source link
   let Password = '';
   for (let i = 0; i < length; i++) {
       Password += selectedChar.charAt(Math.floor(Math.random() * selectedChar.length));
   }
   arrayToConcat = [];
   return Password;
-  
 }
 
 function textCheck(text){
-  if (!isNaN(text)) {
-    alert("You entered digits. please enter Y or N");
+  if(text == ''){
+    alert("You did not enter anything.\nPlease enter Y or N")
+  }else if (!isNaN(text)) {
+    alert("You entered numbers.\nPlease enter Y or N");
   } else if (text.toLowerCase() === "y" || text.toLowerCase() === "n") {    
     return true;
   } else {    
-    alert ("You entered characters that was not Y or N. please enter Y or N");
+    alert ("You entered characters that was not Y or N.\nPlease enter Y or N");
   }
 }
 
@@ -71,8 +74,8 @@ function enteredtype(type){
   let returnval
 
   while(notEntered){
-    returnval = prompt(type + "?");
-    if (!returnval) {
+    returnval = prompt("Would like to include " + type + " in your password?");
+    if (returnval == null) {
       break
     }
     notEntered = textEnterTrue(textCheck(returnval));
@@ -91,11 +94,12 @@ function prompts(){
 
   let charTypeArray = []
 
-
   let numberNotEntered = true;
   while(numberNotEntered){
-    lengthOfPassword = Number(window.prompt("Choose what length you wish your password to be, at least 8 characters and no more than 128 characters"));
-    if(lengthOfPassword == 0){
+    lengthOfPassword = prompt("Choose what length you wish your password to be. \nAt least 8 characters and no more than 128 characters");
+    if(lengthOfPassword == '' ){
+       alert("You did not enter anything.\nPlease enter a number between 7 and 129")
+    } else if(lengthOfPassword == undefined){
       return
     } else if (isNaN(lengthOfPassword)) {
       alert("You did not enter a number");
@@ -108,7 +112,7 @@ function prompts(){
 
   let characterTypeNotEntered = true;
   while(characterTypeNotEntered){
-    alert("Confirm whether or not to include Lowercase letters, Uppercase letters, Numbers, and/or Special Characters. Respond with Y for yes or N for no");
+    alert("Confirm whether or not to include: \n- Lowercase letters \n- Uppercase letters \n- Numbers \n- Special Characters.\nAt least one must be choosen to be included in the password.\nRespond with 'Y' for yes or 'N' for no.");
     
     lowercase = enteredtype('Lowercase letters');
     if(lowercase == undefined){
@@ -122,7 +126,7 @@ function prompts(){
     }
     uppercase = uppercase.toUpperCase();
 
-    numeric = enteredtype('Numeric');
+    numeric = enteredtype('Numbers');
     if(numeric == undefined){
       return
     }
@@ -135,25 +139,31 @@ function prompts(){
     specialCharacters = specialCharacters.toUpperCase();
 
     if (lowercase == 'N' && uppercase == 'N' && numeric == 'N' && specialCharacters == 'N'){
-      alert("You did not select a character type, at least one character type should be selected");
+      alert("You did not select a character type, at least one character type should be selected!");
       continue;
     } else{
       let CorrectCharTypesNotEntered = true;
       while(CorrectCharTypesNotEntered){
         let CorrectCharTypes = prompt(
         "Are these the correct parameters: " + 
-        "Lowercase Letters: " + lowercase + ', ' + 
-        "Uppercase Letters: " + uppercase + ', ' + 
-        "Numbers: " + numeric + ', ' + 
-        "SpecialCharacters: " + specialCharacters + "? (Please respond with Y or N)"
+        "\nLowercase Letters: " + lowercase + 
+        "\nUppercase Letters: " + uppercase + 
+        "\nNumbers: " + numeric + 
+        "\nSpecialCharacters: " + specialCharacters + "\n(Please respond with Y or N)"
         );
+        
+        if(CorrectCharTypes == null){
+          return
+        } 
 
         let textEntered = textCheck(CorrectCharTypes);
         if(textEntered == true && CorrectCharTypes.toUpperCase() === "Y"){
           characterTypeNotEntered = false;
           CorrectCharTypesNotEntered = false;
+        } else if(textEntered == undefined) {
+          continue
         } else {
-        CorrectCharTypesNotEntered = false;
+          CorrectCharTypesNotEntered = false;
         }
       }
     }
