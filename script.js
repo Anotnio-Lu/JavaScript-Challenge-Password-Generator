@@ -12,20 +12,32 @@ function writePassword(Length, array) {
 }
 
 function generatePassword(length, array){
+  let selectedChar = '';
 
-  if(!array.includes('n')){
+  if(!array.includes('N')){
     arrayToConcat = [0, 1, 2, 3];
   } else{
     for(var i = 0; i < array.length; i++){
-      let index = array.indexOf("y");
+      let index = array.indexOf("Y");
       arrayToConcat.push(index);
-      array.splice(index, 1, "n")
-      if(array.includes('y')){
+      array.splice(index, 1, "N")
+      if(array.includes('Y')){
         continue
       } else{
         break
       }
     }
+  }
+
+  let obj = {  
+    L: 'abcdefghijklmnopqrstuvwxyz',
+    U: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    N: '0123456789',
+    SC:'!#"$%&]()*+,-./:;<=>?@[^_`{|}~\\'
+  };
+
+  for(var i = 0; i < arrayToConcat.length; i++){
+    selectedChar = selectedChar.concat(Object.values(obj)[arrayToConcat[i]]);
   }
   
 }
