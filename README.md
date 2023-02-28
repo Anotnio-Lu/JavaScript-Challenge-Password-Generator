@@ -50,8 +50,8 @@ In conclusion, the Random Password Generator application provides an easy-to-use
 ## Deployment
 
 The below is a link to the deployed application:
- 
- 
+ https://anotnio-lu.github.io/JavaScript-Challenge-Password-Generator/
+
 ## Authors
 
 - [Anotnio Lu](https://github.com/Anotnio-Lu)
