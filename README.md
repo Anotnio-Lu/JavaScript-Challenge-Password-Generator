@@ -44,7 +44,7 @@ In conclusion, the Random Password Generator application provides an easy-to-use
 
 ## Screenshots
 
-![App Screenshot](./assets/image/Screenshot%202023-02-26%20at%2001-32-10%20Password%20Generator.png)
+![App Screenshot](./assets/image/Screenshot%202023-02-28%20at%2023-43-11%20Password%20Generator.png)
 
 
 ## Deployment
