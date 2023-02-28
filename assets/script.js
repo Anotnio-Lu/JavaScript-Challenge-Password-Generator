@@ -3,14 +3,19 @@ var generateBtn = document.querySelector("#generate");
 var arrayToConcat = [];
 
 
-// Write password to the #password input
+// Write password to the #password input it also sets the card-body to visible
 function writePassword(Length, array) {
   var password = generatePassword(Length, array);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+
+  var cardBody = document.getElementsByClassName("card-body");
+  cardBody[0].setAttribute("style", "display: block;");
+
 }
 
+// function that generates the password
 function generatePassword(length, array){
   let selectedChar = '';
 
@@ -49,18 +54,20 @@ function generatePassword(length, array){
   return Password;
 }
 
+//function that checks input to see if it is 'Y' or 'N'
 function textCheck(text){
   if(text == ''){
-    alert("You did not enter anything.\nPlease enter Y or N")
+    alert("You did not enter anything.\nPlease enter Y or N!")
   }else if (!isNaN(text)) {
-    alert("You entered numbers.\nPlease enter Y or N");
+    alert("You entered number.\nPlease enter Y or N");
   } else if (text.toLowerCase() === "y" || text.toLowerCase() === "n") {    
     return true;
   } else {    
-    alert ("You entered characters that was not Y or N.\nPlease enter Y or N");
+    alert ("You entered characters that was not Y or N.\nPlease enter Y or N!");
   }
 }
 
+// function ti check if input is true, if it is true that it will return false else it returns true
 function textEnterTrue(text){
   if(text == true){
     return false;
@@ -69,6 +76,7 @@ function textEnterTrue(text){
   }
 }
 
+//function to deteremine what input to include in password
 function enteredtype(type){
   let notEntered = true;
   let returnval
@@ -85,6 +93,7 @@ function enteredtype(type){
   }
 }
 
+// function to start the series of prompt s
 function prompts(){
   let lengthOfPassword
   let lowercase
@@ -102,7 +111,7 @@ function prompts(){
     } else if(lengthOfPassword == undefined){
       return
     } else if (isNaN(lengthOfPassword)) {
-      alert("You did not enter a number");
+      alert("You entered characters that was not a number between 7 and 129");
     } else if (lengthOfPassword > 128 || lengthOfPassword < 8) {    
         alert ("The length has to be at least 8 characters and no more than 128 characters.");
     } else {
@@ -112,7 +121,7 @@ function prompts(){
 
   let characterTypeNotEntered = true;
   while(characterTypeNotEntered){
-    alert("Confirm whether or not to include: \n- Lowercase letters \n- Uppercase letters \n- Numbers \n- Special Characters.\nAt least one must be choosen to be included in the password.\nRespond with 'Y' for yes or 'N' for no.");
+    alert("Confirm whether or not to include: \n- Lowercase letters \n- Uppercase letters \n- Numbers \n- Special Characters\nAt least one must be choosen to be included in the password.\nRespond with 'Y' for yes or 'N' for no.");
     
     lowercase = enteredtype('Lowercase letters');
     if(lowercase == undefined){
